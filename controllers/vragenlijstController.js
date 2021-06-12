@@ -9,17 +9,19 @@ const VragenlijstOutput = mongoose.model('VragenlijstOutput')
 exports.createVragenlijst= function(req,res,next){
     let vragenlijst = new Vragenlijst();
 
-    vragenlijst.gebruiker = req.gebruiker.id;
+    //vragenlijst.gebruiker = req.gebruiker.id;
+    vragenlijst.gebruiker = req.body.gebruiker;
     vragenlijst.vak = req.body.vak;
     vragenlijst.datum = new Date();
 
     
     vragenlijst.klasgroepen = req.body.klasgroepen;
-    vragenlijst.reacties = req.body.reacties;
+    //vragenlijst.reacties = req.body.reacties;
 
     vragenlijst.save(function(err){
         if(err){
             res.send(err);
+            console.log(err);
         }
         res.json({message:'vragenlijst created'});
     });
