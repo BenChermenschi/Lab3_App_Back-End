@@ -96,11 +96,10 @@ exports.getVragenlijstAtId= async function(req,res,next){
     
     .exec( function(err,vragenlijst){
         if (err){
-            res.send(err);
-        }
-        
-        
-        Reactie.find({vragenlijst:vragenlijst._id}).exec( function(err,reacties){
+            res.status(404).send({status:"404",message:err});
+            
+        }else{
+            Reactie.find({vragenlijst:vragenlijst._id}).exec( function(err,reacties){
              
                 if (err){
                     console.log(err);
@@ -133,6 +132,10 @@ exports.getVragenlijstAtId= async function(req,res,next){
                 
 
             });
+        }
+        
+        
+        
        
         
 
@@ -145,6 +148,7 @@ exports.getVragenlijstAtId= async function(req,res,next){
 
     }catch(err){
         console.log(err);
+        res.json({message:"Error"});
     }
     
 }
