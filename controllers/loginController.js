@@ -1,5 +1,6 @@
 require('dotenv').config();
 const gebruikersController = require('./gebruikerController');
+const tokenController = require('./tokenController');
 const { genToken } = require('./tokenController');
 
 
@@ -43,7 +44,34 @@ exports.login = async function (req, res) {
 }
 
 
+exports.isLoggedIn = (req, res, next) => {
+  
+    const token = req.headers.auth
 
+    const isValid = tokenController.isTokenValid(token)
+    
+    if(isValid){
+        next()
+    }
+    else{
+        res.status(401).send()
+    }
+
+}
+
+exports.isAdmin = (req, res, next) => {
+    console.log("testAdmin")
+    const token = req.headers.auth
+
+    const isAdmin = tokenController.isAdmin(token)
+    
+    if(isAdmin){
+        next()
+    }
+    else{
+        res.status(401).send()
+    }
+}
 
 
 
