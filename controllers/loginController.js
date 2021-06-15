@@ -30,7 +30,7 @@ exports.login = async function (req, res) {
         console.log(final)
 
        ///YER OUTPUT IS HERE
-        res.json({ token: final,isAdmin:isAdmin,vollenaam:resultaat1.vollenaam });
+        res.json({ token: final,isAdmin:isAdmin,vollenaam:resultaat1.vollenaam,_id:resultaat1._id});
         console.log("test")
         console.log(res)
         res.send();

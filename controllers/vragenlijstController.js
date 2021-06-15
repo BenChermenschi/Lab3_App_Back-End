@@ -155,7 +155,7 @@ exports.getVragenlijstAtId= async function(req,res,next){
 
 exports.getVragenlijstenByGebruikersId=function(req,res,next){
     try{
-        Vragenlijst.find({gebruiker:req.gebruiker.id})
+        Vragenlijst.find({gebruiker:req.body._id})
         .populate({
             path:'gebruiker',
             options: { retainNullValues: true },
