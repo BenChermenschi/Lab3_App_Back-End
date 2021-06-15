@@ -16,18 +16,19 @@ module.exports = function (router) {
         next();
     });
 
-    /*
+    
     
        router.route(prefix)
             .get([
-                authmiddleware.verifyTokenAdmin,
+                loginController.isLoggedIn,
+                loginController.isAdmin,
                 gebruikerController.getAllGebruikers
             ]);
         
         
         router.route(prefix+ '/email')
             .get([
-                authmiddleware.verifyToken,
+                loginController.isLoggedIn,
                 gebruikerController.getGebruikerAtEmail]);
     
            // router.route(gebruikerroutepathprefix+ '/pass').get(gebruikerController.checkWachtwoord);
@@ -35,7 +36,7 @@ module.exports = function (router) {
         
         router.route(prefix+'/:gebruiker_id')
             .get([
-                authmiddleware.verifyToken,
+                loginController.isLoggedIn,
                 gebruikerController.getGebruikerAtId]);
     
         //private
@@ -43,22 +44,25 @@ module.exports = function (router) {
         //admin
         router.route(prefix)
             .post([
-                authmiddleware.verifyTokenAdmin,
+                loginController.isLoggedIn,
+                loginController.isAdmin,
                 gebruikerController.createGebruiker]);
         
         router.route(prefix+'/:gebruiker_id')
             .put([
-                authmiddleware.verifyTokenAdmin,
+                loginController.isLoggedIn,
+                loginController.isAdmin,
                 gebruikerController.updateGebruiker])
             .delete([
-                authmiddleware.verifyTokenAdmin,
+                loginController.isLoggedIn,
+                loginController.isAdmin,
                 gebruikerController.deleteGebruiker]);
-    */
+    
 
 
 
     //AUTHLESS
-
+/*
     router.route(prefix)
 
         .get([
@@ -95,5 +99,6 @@ module.exports = function (router) {
         .delete([
 
             gebruikerController.deleteGebruiker]);
+            */
 
 }
