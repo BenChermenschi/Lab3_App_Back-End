@@ -14,33 +14,38 @@ module.exports= function (router){
     });
 
 
-    /*
+    
     router.route(prefix)
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vakController.getAllVakken]);
 
     router.route(prefix+'/:vak_id')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vakController.getVakAtId]);
 
     router.route(prefix)
         .post([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+                loginController.isAdmin,
             vakController.createVak]);
 
     router.route(prefix+'/:vak_id')
         .put([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+                loginController.isAdmin,
             vakController.updateVak])
         .delete([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+                loginController.isAdmin,
             vakController.deleteVak]);
-            */
+            
 
 
     //AUTHLESS
+
+    /*
     router.route(prefix)
         .get([
            
@@ -63,6 +68,9 @@ module.exports= function (router){
         .delete([
             
             vakController.deleteVak]);
+
+*/
+
 }
 
 

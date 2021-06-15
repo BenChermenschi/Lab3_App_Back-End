@@ -11,24 +11,27 @@ module.exports= function (router){
         //logging when middleware is handing a request.
         next();
     });
-/*
+
     router.route(prefix)
         .post(reactieController.createReactie)
         .get(reactieController.getAllReacties);
     
     router.route(prefix+'/vragenlijst')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             reactieController.getReactieByVragenlijst]);
 
     router.route(prefix+'/:reactie_id')
-        .get(reactieController.getReactieAtId)
+        .get([
+            loginController.isLoggedIn,
+            ,reactieController.getReactieAtId])
         ;
-*/
+
         /*.put(reactieController.updateReactie)
         .delete(reactieController.deleteReactie)*/
 
     //AUTHLESS
+    /*
     router.route(prefix)
     .post(reactieController.createReactie)
     .get(reactieController.getAllReacties);
@@ -42,8 +45,11 @@ router.route(prefix+'/:reactie_id')
     .get(reactieController.getReactieAtId)
     ;
 
+    */
+
     /*.put(reactieController.updateReactie)
     .delete(reactieController.deleteReactie)*/
 
+   
     
 }
