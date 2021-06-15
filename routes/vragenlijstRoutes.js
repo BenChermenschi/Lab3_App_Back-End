@@ -31,7 +31,7 @@ module.exports= function(router){
 
     router.route(prefix+'/:vragenlijst_id')
         .get([
-            loginController.isLoggedIn,
+            
             vragenlijstController.getVragenlijstAtId])
         .put([
             loginController.isLoggedIn,
