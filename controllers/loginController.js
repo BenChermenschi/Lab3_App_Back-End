@@ -1,4 +1,5 @@
 require('dotenv').config();
+const gebruiker = require('../models/gebruikerModel');
 const gebruikersController = require('./gebruikerController');
 const tokenController = require('./tokenController');
 const { genToken } = require('./tokenController');

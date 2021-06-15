@@ -3,6 +3,7 @@ const gebruikerstypeController = require('../controllers/gebruikerstypeControlle
 const Gebruikerstype = require('../models/gebruikerstypeModel');
 const prefix="/gebruikerstypes";
 const authmiddleware = require('../authenticationMiddleware');
+const loginController = require('../controllers/loginController');
 
 module.exports=function(router){
 
@@ -12,36 +13,39 @@ module.exports=function(router){
     });
 
 
-/*
+
     //public
     router.route(prefix)
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             gebruikerstypeController.getAllGebruikerstypes]);
 
     router.route(prefix+'/:gebruikerstype_id')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             gebruikerstypeController.getGebruikerstypeAtId]);
     //private
     router.route(prefix)
     .post([
-        authmiddleware.verifyTokenAdmin,
+        loginController.isLoggedIn,
+        loginController.isAdmin,
         gebruikerstypeController.createGebruikerstype]);
 
     router.route(prefix+'/:gebruikerstype_id')
     .put([
-        authmiddleware.verifyTokenAdmin,
+        loginController.isLoggedIn,
+        loginController.isAdmin,
         gebruikerstypeController.updateGebruikerstype])
         .delete([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             gebruikerstypeController.deleteGebruikerstype]);
-*/
+
 
 
     //AUTHLESS
 
-
+/*
     //public
     router.route(prefix)
         .get([
@@ -65,6 +69,6 @@ module.exports=function(router){
         .delete([
         
             gebruikerstypeController.deleteGebruikerstype]);
-
+*/
 
 }  
