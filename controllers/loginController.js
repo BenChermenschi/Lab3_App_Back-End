@@ -26,12 +26,13 @@ exports.login = async function (req, res) {
 
         let final = await genToken(res, resultaat1.vollenaam, resultaat1._id, isAdmin);
 
-
+        console.log("final : ");
         console.log(final)
 
        ///YER OUTPUT IS HERE
         res.json({ token: final,isAdmin:isAdmin,vollenaam:vollenaam });
         console.log("test")
+        console.log(res)
         res.send();
 
 
