@@ -1,9 +1,10 @@
 const express = require('express');
 const Vak = require('../models/vakModel');
+const Gebruikerstype = require('../models/gebruikerstypeModel');
 const vakController = require('../controllers/vakController');
 const prefix="/vakken";
 const authmiddleware = require('../authenticationMiddleware');
-
+const loginController = require('../controllers/loginController');
 
 module.exports= function (router){
     
@@ -14,32 +15,36 @@ module.exports= function (router){
     });
 
 
-    /*
+    
     router.route(prefix)
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vakController.getAllVakken]);
 
     router.route(prefix+'/:vak_id')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vakController.getVakAtId]);
 
     router.route(prefix)
         .post([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             vakController.createVak]);
 
     router.route(prefix+'/:vak_id')
         .put([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             vakController.updateVak])
         .delete([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             vakController.deleteVak]);
-            */
+            
 
 
+            /*
     //AUTHLESS
     router.route(prefix)
         .get([
@@ -63,6 +68,8 @@ module.exports= function (router){
         .delete([
             
             vakController.deleteVak]);
+
+            */
 }
 
 
