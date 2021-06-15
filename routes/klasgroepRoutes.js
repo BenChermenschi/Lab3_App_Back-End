@@ -3,6 +3,7 @@ const Klasgroep = require('../models/klasgroepModel');
 const klasgroepController = require('../controllers/klasgroepController');
 const prefix="/klasgroepen";
 const authmiddleware = require('../authenticationMiddleware');
+const loginController = require('../controllers/loginController');
 
 module.exports= function (router){
     
@@ -13,32 +14,36 @@ module.exports= function (router){
     });
 
 
-    /*
+
+    
     router.route(prefix)
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             klasgroepController.getAllKlasgroepen]);
 
     router.route(prefix+'/:klasgroep_id')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             klasgroepController.getKlasgroepAtId]);
 
     router.route(prefix)
     .post([
-        authmiddleware.verifyTokenAdmin,
+        loginController.isLoggedIn,
+        loginController.isAdmin,
         klasgroepController.createKlasgroep]);
 
     router.route(prefix+'/:klasgroep_id')
         .put([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             klasgroepController.updateKlasgroep])
         .delete([
-            authmiddleware.verifyTokenAdmin,
+            loginController.isLoggedIn,
+            loginController.isAdmin,
             klasgroepController.deleteKlasgroep]);
-*/
 
 
+/*
     //AUTHLESS
     router.route(prefix)
     .get([
@@ -63,5 +68,5 @@ router.route(prefix+'/:klasgroep_id')
         
         klasgroepController.deleteKlasgroep]);
 
-
+*/
 }
