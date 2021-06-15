@@ -29,8 +29,8 @@ exports.login = async function (req, res) {
 
         console.log(final)
 
-        //// CHECK OUT PROMISES YOU DUM DUM!!! BCRYPT IS MAKING THIS STUFF ASYNC!!!!!!
-        res.json({ token: final });
+       
+        res.json({ token: final,isAdmin:isAdmin,vollenaam:vollenaam });
         console.log("test")
         res.send();
 
