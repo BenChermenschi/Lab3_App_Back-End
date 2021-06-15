@@ -7,8 +7,8 @@ const authmiddleware = require('../authenticationMiddleware');
 
 module.exports = function (router) {
 
-    router.use(loginController.isLoggedIn);
-    router.use(loginController.isAdmin);
+   // router.use(loginController.isLoggedIn);
+    //router.use(loginController.isAdmin);
 
     //middleware
     router.use(function (req, res, next) {
