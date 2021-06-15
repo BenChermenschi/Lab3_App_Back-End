@@ -14,36 +14,36 @@ module.exports= function(router){
     });
 
 
-    /*
+    
     router.route(prefix)
         .post([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vragenlijstController.createVragenlijst])
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vragenlijstController.getAllVragenlijsten]);
 
 
     router.route(prefix+'/gebruiker')
             .get([
-                authmiddleware.verifyToken,
+                loginController.isLoggedIn,
                 vragenlijstController.getVragenlijstenByGebruikersId]);
 
     router.route(prefix+'/:vragenlijst_id')
         .get([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vragenlijstController.getVragenlijstAtId])
         .put([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vragenlijstController.updateVragenlijst])
         .delete([
-            authmiddleware.verifyToken,
+            loginController.isLoggedIn,
             vragenlijstController.deleteVragenlijst]);
-*/
+
 
     //AUTHLESS
 
-    
+    /*
     router.route(prefix)
         .post([
             
@@ -68,7 +68,7 @@ module.exports= function(router){
         .delete([
         
             vragenlijstController.deleteVragenlijst]);
-    
+    */
 }
 
 
