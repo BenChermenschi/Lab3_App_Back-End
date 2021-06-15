@@ -20,7 +20,6 @@ module.exports= function (router){
     
     router.route(prefix+'/vragenlijst')
         .get([
-            loginController.isLoggedIn,
             reactieController.getReactieByVragenlijst]);
 
     router.route(prefix+'/:reactie_id')
