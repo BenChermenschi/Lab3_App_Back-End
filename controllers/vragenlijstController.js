@@ -105,8 +105,6 @@ exports.getVragenlijstAtId= async function(req,res,next){
                     console.log(err);
                 }
 
-
-                
                 //setting reacties into vragenlijst
                 vragenlijst.reacties = reacties;
                 //recast to output
@@ -133,17 +131,6 @@ exports.getVragenlijstAtId= async function(req,res,next){
 
             });
         }
-        
-        
-        
-       
-        
-
-
-
-
-
-        
     });
 
     }catch(err){
@@ -155,7 +142,7 @@ exports.getVragenlijstAtId= async function(req,res,next){
 
 exports.getVragenlijstenByGebruikersId=function(req,res,next){
     try{
-        Vragenlijst.find({gebruiker:req.body._id})
+        Vragenlijst.find({gebruiker:req.params._id})
         .populate({
             path:'gebruiker',
             options: { retainNullValues: true },

@@ -24,7 +24,7 @@ module.exports= function(router){
             vragenlijstController.getAllVragenlijsten]);
 
 
-    router.route(prefix+'/gebruiker')
+    router.route(prefix+'/gebruiker/:_id')
             .get([
                 loginController.isLoggedIn,
                 vragenlijstController.getVragenlijstenByGebruikersId]);
