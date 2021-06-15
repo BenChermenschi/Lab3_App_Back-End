@@ -3,7 +3,6 @@ const Vak = require('../models/vakModel');
 const vakController = require('../controllers/vakController');
 const prefix="/vakken";
 const authmiddleware = require('../authenticationMiddleware');
-const loginController = require('../controllers/loginController');
 
 
 module.exports= function (router){
