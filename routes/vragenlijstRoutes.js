@@ -5,6 +5,7 @@ const vragenlijstController = require('../controllers/vragenlijstController');
 const prefix='/vragenlijsten';
 const authmiddleware = require('../authenticationMiddleware');
 const loginController = require('../controllers/loginController');
+
 module.exports= function(router){
 
     //middleware

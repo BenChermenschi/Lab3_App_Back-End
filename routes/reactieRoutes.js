@@ -3,6 +3,7 @@ const Reactie = require('../models/reactieModel');
 const reactieController = require('../controllers/reactieController');
 const prefix="/reacties";
 const authmiddleware = require('../authenticationMiddleware');
+const loginController = require('../controllers/loginController');
 
 module.exports= function (router){
     

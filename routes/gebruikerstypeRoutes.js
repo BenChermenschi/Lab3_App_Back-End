@@ -3,6 +3,7 @@ const gebruikerstypeController = require('../controllers/gebruikerstypeControlle
 const Gebruikerstype = require('../models/gebruikerstypeModel');
 const prefix="/gebruikerstypes";
 const authmiddleware = require('../authenticationMiddleware');
+const loginController = require('../controllers/loginController');
 
 module.exports=function(router){
 

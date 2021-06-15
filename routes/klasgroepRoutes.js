@@ -3,6 +3,7 @@ const Klasgroep = require('../models/klasgroepModel');
 const klasgroepController = require('../controllers/klasgroepController');
 const prefix="/klasgroepen";
 const authmiddleware = require('../authenticationMiddleware');
+const loginController = require('../controllers/loginController');
 
 module.exports= function (router){
     
