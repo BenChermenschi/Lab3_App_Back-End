@@ -13,38 +13,33 @@ module.exports= function (router){
     });
 
 
-    
+    /*
     router.route(prefix)
         .get([
-            loginController.isLoggedIn,
+            authmiddleware.verifyToken,
             klasgroepController.getAllKlasgroepen]);
 
     router.route(prefix+'/:klasgroep_id')
         .get([
-            loginController.isLoggedIn,
+            authmiddleware.verifyToken,
             klasgroepController.getKlasgroepAtId]);
 
     router.route(prefix)
     .post([
-        loginController.isLoggedIn,
-        loginController.isAdmin,
+        authmiddleware.verifyTokenAdmin,
         klasgroepController.createKlasgroep]);
 
     router.route(prefix+'/:klasgroep_id')
         .put([
-            loginController.isLoggedIn,
-            loginController.isAdmin,
+            authmiddleware.verifyTokenAdmin,
             klasgroepController.updateKlasgroep])
         .delete([
-            loginController.isLoggedIn,
-            loginController.isAdmin,
+            authmiddleware.verifyTokenAdmin,
             klasgroepController.deleteKlasgroep]);
-
+*/
 
 
     //AUTHLESS
-
-    /*
     router.route(prefix)
     .get([
         
@@ -68,6 +63,5 @@ router.route(prefix+'/:klasgroep_id')
         
         klasgroepController.deleteKlasgroep]);
 
-        */
 
 }

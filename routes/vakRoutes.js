@@ -14,40 +14,35 @@ module.exports= function (router){
     });
 
 
-    
-    router.route(prefix)
-        .get([
-            loginController.isLoggedIn,
-            vakController.getAllVakken]);
-
-    router.route(prefix+'/:vak_id')
-        .get([
-            loginController.isLoggedIn,
-            vakController.getVakAtId]);
-
-    router.route(prefix)
-        .post([
-            loginController.isLoggedIn,
-                loginController.isAdmin,
-            vakController.createVak]);
-
-    router.route(prefix+'/:vak_id')
-        .put([
-            loginController.isLoggedIn,
-                loginController.isAdmin,
-            vakController.updateVak])
-        .delete([
-            loginController.isLoggedIn,
-                loginController.isAdmin,
-            vakController.deleteVak]);
-            
-
-
-    //AUTHLESS
-
     /*
     router.route(prefix)
         .get([
+            authmiddleware.verifyToken,
+            vakController.getAllVakken]);
+
+    router.route(prefix+'/:vak_id')
+        .get([
+            authmiddleware.verifyToken,
+            vakController.getVakAtId]);
+
+    router.route(prefix)
+        .post([
+            authmiddleware.verifyTokenAdmin,
+            vakController.createVak]);
+
+    router.route(prefix+'/:vak_id')
+        .put([
+            authmiddleware.verifyTokenAdmin,
+            vakController.updateVak])
+        .delete([
+            authmiddleware.verifyTokenAdmin,
+            vakController.deleteVak]);
+            */
+
+
+    //AUTHLESS
+    router.route(prefix)
+        .get([
            
             vakController.getAllVakken]);
 
@@ -68,9 +63,6 @@ module.exports= function (router){
         .delete([
             
             vakController.deleteVak]);
-
-*/
-
 }
 
 

@@ -12,38 +12,35 @@ module.exports=function(router){
     });
 
 
-
+/*
     //public
     router.route(prefix)
         .get([
-            loginController.isLoggedIn,
+            authmiddleware.verifyToken,
             gebruikerstypeController.getAllGebruikerstypes]);
 
     router.route(prefix+'/:gebruikerstype_id')
         .get([
-            loginController.isLoggedIn,
+            authmiddleware.verifyToken,
             gebruikerstypeController.getGebruikerstypeAtId]);
     //private
     router.route(prefix)
     .post([
-        loginController.isLoggedIn,
-        loginController.isAdmin,
+        authmiddleware.verifyTokenAdmin,
         gebruikerstypeController.createGebruikerstype]);
 
     router.route(prefix+'/:gebruikerstype_id')
     .put([
-        loginController.isLoggedIn,
-        loginController.isAdmin,
+        authmiddleware.verifyTokenAdmin,
         gebruikerstypeController.updateGebruikerstype])
-    .delete([
-        loginController.isLoggedIn,
-        loginController.isAdmin,
-        gebruikerstypeController.deleteGebruikerstype]);
-
+        .delete([
+            authmiddleware.verifyTokenAdmin,
+            gebruikerstypeController.deleteGebruikerstype]);
+*/
 
 
     //AUTHLESS
-/*
+
 
     //public
     router.route(prefix)
@@ -68,8 +65,6 @@ module.exports=function(router){
         .delete([
         
             gebruikerstypeController.deleteGebruikerstype]);
-
-*/
 
 
 }  
