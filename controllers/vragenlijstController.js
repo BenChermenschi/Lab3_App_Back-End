@@ -185,7 +185,7 @@ exports.getRecentVragenlijst=function(req,res,next){
         console.log('searching');
 
         Vragenlijst.find()
-        .sort({_id:-1}).limit(1)
+        .sort({datum:-1}).limit(1)
     .populate({
         path:'gebruiker',
         options: { retainNullValues: true },
@@ -262,7 +262,7 @@ exports.getRecentVragenlijstByUser=function(req,res,next){
                 console.log('searching');
 
                 Vragenlijst.find({gebruiker:req.body._id})
-                .sort({_id:-1}).limit(1)
+                .sort({datum:-1}).limit(1)
             .populate({
                 path:'gebruiker',
                 options: { retainNullValues: true },
