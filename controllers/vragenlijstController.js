@@ -178,6 +178,159 @@ exports.getVragenlijstenByGebruikersId=function(req,res,next){
    
 }
 
+exports.getRecentVragenlijst=function(req,res,next){
+    try{
+                
+                
+        console.log('searching');
+
+        Vragenlijst.find()
+        .sort({_id:-1}).limit(1)
+    .populate({
+        path:'gebruiker',
+        options: { retainNullValues: true },
+        model: 'Gebruiker',
+        populate:{
+            path:'gebruikerstype',
+            model:'GebruikersType',
+            options: { retainNullValues: true },
+        }
+    })
+    .populate('vak')
+    .populate({
+        path:'klasgroepen',
+        options: { retainNullValues: true },
+        populate:{
+            path:'klasgroepen',
+            model:'Klasgroep',
+            options: { retainNullValues: true }
+        }
+    })
+    
+    .exec( function(err,vragenlijst){
+        if (err){
+            res.status(404).send({status:"404",message:err});
+            
+        }else{
+            Reactie.find({vragenlijst:vragenlijst._id}).exec( function(err,reacties){
+             
+                if (err){
+                    console.log(err);
+                }
+
+                //setting reacties into vragenlijst
+                vragenlijst.reacties = reacties;
+                //recast to output
+                let output = hercastVragenlijstNaarOutput(vragenlijst);
+
+                //cleanup results for calculations
+                const hercast5Punten = hercastArrayBenMee(reacties);
+                const hercastUitleggen=hercastArrayOpnieuwUitleggen(reacties);
+                
+                //5punten schaal
+                output.totalen.benMee.aantal1 = filterEnCountArray(hercast5Punten,1);
+                output.totalen.benMee.aantal2 = filterEnCountArray(hercast5Punten,2);
+                output.totalen.benMee.aantal3 = filterEnCountArray(hercast5Punten,3);
+                output.totalen.benMee.aantal4 = filterEnCountArray(hercast5Punten,4);
+                output.totalen.benMee.aantal5 = filterEnCountArray(hercast5Punten,5);
+
+                //ja/nee
+                output.totalen.opnieuwUitleggen.aantalJa = filterEnCountArray(hercastUitleggen,true);
+                output.totalen.opnieuwUitleggen.aantalNee = filterEnCountArray(hercastUitleggen,false);
+
+                
+                res.json(output);
+                
+
+            });
+        }
+    });
+
+    }catch(err){
+        console.log(err);
+        res.json({message:"Error"});
+    }
+}
+
+exports.getRecentVragenlijstByUser=function(req,res,next){
+    
+
+        if(req.body._id != null || req.body._id != "" ){
+            try{
+                console.log("to find id : ");
+                console.log(req.body._id);
+                console.log('searching');
+
+                Vragenlijst.find({gebruiker:req.body._id})
+                .sort({_id:-1}).limit(1)
+            .populate({
+                path:'gebruiker',
+                options: { retainNullValues: true },
+                model: 'Gebruiker',
+                populate:{
+                    path:'gebruikerstype',
+                    model:'GebruikersType',
+                    options: { retainNullValues: true },
+                }
+            })
+            .populate('vak')
+            .populate({
+                path:'klasgroepen',
+                options: { retainNullValues: true },
+                populate:{
+                    path:'klasgroepen',
+                    model:'Klasgroep',
+                    options: { retainNullValues: true }
+                }
+            })
+            
+            .exec( function(err,vragenlijst){
+                if (err){
+                    res.status(404).send({status:"404",message:err});
+                    
+                }else{
+                    Reactie.find({vragenlijst:vragenlijst._id}).exec( function(err,reacties){
+                     
+                        if (err){
+                            console.log(err);
+                        }
+        
+                        //setting reacties into vragenlijst
+                        vragenlijst.reacties = reacties;
+                        //recast to output
+                        let output = hercastVragenlijstNaarOutput(vragenlijst);
+        
+                        //cleanup results for calculations
+                        const hercast5Punten = hercastArrayBenMee(reacties);
+                        const hercastUitleggen=hercastArrayOpnieuwUitleggen(reacties);
+                        
+                        //5punten schaal
+                        output.totalen.benMee.aantal1 = filterEnCountArray(hercast5Punten,1);
+                        output.totalen.benMee.aantal2 = filterEnCountArray(hercast5Punten,2);
+                        output.totalen.benMee.aantal3 = filterEnCountArray(hercast5Punten,3);
+                        output.totalen.benMee.aantal4 = filterEnCountArray(hercast5Punten,4);
+                        output.totalen.benMee.aantal5 = filterEnCountArray(hercast5Punten,5);
+        
+                        //ja/nee
+                        output.totalen.opnieuwUitleggen.aantalJa = filterEnCountArray(hercastUitleggen,true);
+                        output.totalen.opnieuwUitleggen.aantalNee = filterEnCountArray(hercastUitleggen,false);
+        
+                        
+                        res.json(output);
+                        
+        
+                    });
+                }
+            });
+        
+            }catch(err){
+                console.log(err);
+                res.json({message:"Error"});
+            }
+        }
+    
+}
+
 exports.updateVragenlijst=function(req,res,next){
     Vragenlijst.findById(req.params.vragenlijst_id,function(err,vragenlijst){
         if(err){

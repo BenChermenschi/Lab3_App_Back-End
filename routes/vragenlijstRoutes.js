@@ -23,6 +23,15 @@ module.exports= function(router){
             loginController.isLoggedIn,
             vragenlijstController.getAllVragenlijsten]);
 
+    router.route(prefix + '/recent')
+    .post([
+        vragenlijstController.getRecentVragenlijstByUser
+    ]);
+    router.route(prefix+'/allrecent')
+    .post([
+        vragenlijstController.getRecentVragenlijst
+    ]);
+
 
     router.route(prefix+'/gebruiker/:_id')
             .get([
