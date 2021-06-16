@@ -23,12 +23,12 @@ module.exports= function(router){
             loginController.isLoggedIn,
             vragenlijstController.getAllVragenlijsten]);
 
-    router.route(prefix + '/recent')
+    router.route(prefix + '/recentbyuser')
     .post([
         vragenlijstController.getRecentVragenlijstByUser
     ]);
-    router.route(prefix+'/allrecent')
-    .post([
+    router.route(prefix+'/recent')
+    .get([
         vragenlijstController.getRecentVragenlijst
     ]);
 
