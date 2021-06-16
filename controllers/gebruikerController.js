@@ -30,7 +30,7 @@ exports.createGebruiker= async function(req,res,next){
 }
 
 exports.getAllGebruikers=function(req,res,next){ //Extremely unsafe!
-    Gebruiker.find().populate('gebruikerstype').exec(function(err,gebruikers){
+    Gebruiker.find().sort('email').populate('gebruikerstype').exec(function(err,gebruikers){
         if(err){
             res.send(err);
         }
