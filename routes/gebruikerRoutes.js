@@ -37,7 +37,11 @@ module.exports = function (router) {
         router.route(prefix+'/:gebruiker_id')
             .get([
                 loginController.isLoggedIn,
-                gebruikerController.getGebruikerAtId]);
+                gebruikerController.getGebruikerAtId])
+            .patch([
+                loginController.isLoggedIn,
+                gebruikerController.EditPassword
+            ]);
     
         //private
     

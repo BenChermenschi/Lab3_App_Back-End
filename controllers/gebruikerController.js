@@ -79,6 +79,30 @@ exports.updateGebruiker=function(req,res,next){          // need to check if wha
                 res.json({message:'gebruiker updated'});
             });
         });
+}
+
+exports.EditPassword= async function(req,res,next){
+try{
+    Gebruiker.findById(req.params.gebruiker_id).exec(function(err,gebruiker){
+    const saltrounds = 10; //defines the level of encryption, the higher the number the more encrypted but also the slower the application.
+    bcrypt.hash(req.body.wachtwoord,saltrounds).then(hash=>{
+       gebruiker.wachtwoord=hash;
+
+       gebruiker.save().then(result=>{
+           if(!result){
+               return res.status(500).json({
+                   message:"error creating gebruiker"
+               })
+           }
+           res.json({message:'pass updated'});
+       });
+       
+   });
+    });
+}catch(err){
+    console.log(err);
+    res.status(500).json({message:err}).send();
+}
     
 }
 
