@@ -25,10 +25,13 @@ module.exports= function(router){
 
     router.route(prefix + '/recentbyuser')
     .post([
+        loginController.isLoggedIn,
         vragenlijstController.getRecentVragenlijstByUser
     ]);
     router.route(prefix+'/recent')
     .get([
+        loginController.isLoggedIn,
+        loginController.isAdmin,
         vragenlijstController.getRecentVragenlijst
     ]);
 
