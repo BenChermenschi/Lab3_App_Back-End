@@ -31,6 +31,7 @@ exports.getAllVragenlijsten= function(req,res,next){
 
     try{
         Vragenlijst.find()
+        .sort({datum: -1})
     
         .populate({
             path:'gebruiker',
