@@ -71,7 +71,7 @@ exports.isAdmin = (req, res, next) => {
         next()
     }
     else{
-        res.status(401).send()
+        res.status(403).send()
     }
 }
 
