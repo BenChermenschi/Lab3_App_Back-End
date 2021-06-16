@@ -17,7 +17,7 @@ exports.createKlasgroep= function(req,res,next){
 }
 
 exports.getAllKlasgroepen= function(req,res,next){
-    Klasgroep.find(function(err,klasgroepen){
+    Klasgroep.find().sort('naam').exec(function(err,klasgroepen){
         if(err){
             res.send(err);
         }
