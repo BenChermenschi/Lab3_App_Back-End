@@ -15,7 +15,8 @@ exports.createVak= function(req,res,next){
 }
 
 exports.getAllVakken= function(req,res,next){
-    Vak.find(function(err,vakken){
+    Vak.find().sort({ naam: ascending }).exec(function(err,vakken)
+    {
         if(err){
             res.send(err);
         }
